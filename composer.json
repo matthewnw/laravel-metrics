@@ -1,0 +1,27 @@
+{
+    "name": "matthewnw/metrics",
+    "description": "Create easy to use metrics and charts based on your Laravel Eloquent models using simple methods (count, sum, average etc.)",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "5.*"
+    },
+    "author": {
+        "name": "Matthew Williams",
+        "email": "matthew@codelaunch.uk"
+    },
+    "autoload": {
+        "psr-4": {
+            "Matthewnw\\Metrics\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Matthewnw\\Metrics\\MetricsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
