@@ -1,5 +1,5 @@
 {
-    "name": "matthewnw/metrics",
+    "name": "matthewnw/laravel-metrics",
     "description": "Create easy to use metrics and charts based on your Laravel Eloquent models using simple methods (count, sum, average etc.)",
     "license": "MIT",
     "type": "library",
