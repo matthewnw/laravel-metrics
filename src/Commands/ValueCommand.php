@@ -37,6 +37,7 @@ class ValueCommand extends Command
      */
     public function handle()
     {
+        // TODO: Create generator for a new metric
         $this->line('Value metric created.');
     }
 }

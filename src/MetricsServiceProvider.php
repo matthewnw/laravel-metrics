@@ -18,8 +18,6 @@ class MetricsServiceProvider extends ServiceProvider
             __DIR__.'/Config/metrics.php' => config_path('metrics.php'),
         ], 'metrics_config');
 
-        $this->loadRoutesFrom(__DIR__ . '/Routes/web.php');
-
         $this->loadViewsFrom(__DIR__ . '/Views', 'laravel-metrics');
 
         $this->publishes([
