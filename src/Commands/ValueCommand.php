@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 
 class ValueCommand extends Command
 {
+    use MetricCommand;
+
     /**
      * The name and signature of the console command.
      *
@@ -21,23 +23,9 @@ class ValueCommand extends Command
     protected $description = 'Create a new value metric class';
 
     /**
-     * Create a new command instance.
+     * Type of metric
      *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        // TODO: Create generator for a new metric
-        $this->line('Value metric created.');
-    }
+    protected $type = 'Value';
 }

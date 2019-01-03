@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Metrics\{{metricName}};
+
+use Matthewnw\Metrics\Trend;
+use Illuminate\Http\Request;
+use App\User;
+
+/**
+ * {{metricName}} class
+ */
+class {{metricName}} extends Trend {
+
+    /**
+     * Function called when instantiated to get the calculations
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return mixed
+     */
+    public function calculate(Request $request)
+    {
+        return $this->countByDays($request, User::class)
+                    ->showLatestValue()
+                    ->icon('person_add')
+                    ->label(function($label){
+                        return "$label New Users";
+                    });
+    }
+
+    /**
+     * Array of dropdown range selections for the metric
+     * values can be either an integer or MTD, QTD, YTD
+     *
+     * @return Array
+     */
+    public function ranges()
+    {
+        return [
+            7 => '7 Days',
+            30 => '30 Days',
+            60 => '60 Days',
+            'MTD' => 'Month to Date',
+            'QTD' => 'Quarter to Date',
+            'YTD' => 'Year to Date',
+        ];
+    }
+
+    /**
+     * Return the key for the default range if none provided
+     * defaults to the first in the range list
+     *
+     * @return int|string
+     */
+    public function defaultRange()
+    {
+        return 30;
+    }
+
+    /**
+     * Determine for how many minutes the metric shoule be cached
+     *
+     * @return \DateTimeInterface|\DateInterval|float|int
+     */
+    public function cacheFor()
+    {
+        // return now()->addMinutes(5);
+    }
+}

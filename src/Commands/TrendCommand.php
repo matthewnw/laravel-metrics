@@ -6,12 +6,14 @@ use Illuminate\Console\Command;
 
 class TrendCommand extends Command
 {
+    use MetricCommand;
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'metric:trend';
+    protected $signature = 'metric:trend {name : The name of the metric class}';
 
     /**
      * The console command description.
@@ -21,22 +23,9 @@ class TrendCommand extends Command
     protected $description = 'Create a new trend metric class';
 
     /**
-     * Create a new command instance.
+     * Type of metric
      *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        $this->line('Trend metric created.');
-    }
+    protected $type = 'Trend';
 }

@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 
 class PartitionCommand extends Command
 {
+    use MetricCommand;
+
     /**
      * The name and signature of the console command.
      *
@@ -21,22 +23,9 @@ class PartitionCommand extends Command
     protected $description = 'Create a new partition metric class';
 
     /**
-     * Create a new command instance.
+     * Type of metric
      *
-     * @return void
+     * @var string
      */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        $this->line('Partition metric created.');
-    }
+    protected $type = 'Partition';
 }
