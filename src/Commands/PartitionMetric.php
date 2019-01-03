@@ -4,7 +4,7 @@ namespace Matthewnw\Metrics\Commands;
 
 use Illuminate\Console\Command;
 
-class ValueCommand extends Command
+class PartitionMetric extends Command
 {
     use MetricCommand;
 
@@ -13,19 +13,19 @@ class ValueCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'metric:value {name : The name of the metric class}';
+    protected $signature = 'metric:partition {name : The name of the metric class}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new value metric class';
+    protected $description = 'Create a new partition metric class';
 
     /**
      * Type of metric
      *
      * @var string
      */
-    protected $type = 'Value';
+    protected $type = 'Partition';
 }

@@ -72,7 +72,13 @@ abstract class Value extends Metric {
     protected function calculateChange()
     {
         $difference = (int) $this->value['value'] - (int) $this->previous;
-        $this->change = round(($difference / (int) $this->value['value']) * 100, 2);
+
+        // Prevent division by zero
+        if ($difference !== 0) {
+            $this->change = round(($difference / $this->value['value']) * 100, 2);
+        } else {
+            $this->change = 0;
+        }
 
         if($this->previous && (int) $this->previous > 0){
             $this->changeLabel = abs($this->change) . '% ' . ($this->change > 0? 'Increase' : 'Decrease');

@@ -4,7 +4,7 @@ namespace Matthewnw\Metrics\Commands;
 
 use Illuminate\Console\Command;
 
-class TrendCommand extends Command
+class TrendMetric extends Command
 {
     use MetricCommand;
 

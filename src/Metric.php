@@ -132,7 +132,7 @@ abstract class Metric implements MetricContract, Arrayable, Jsonable, JsonSerial
             $date = Carbon::now();
         }else{
             $date = (clone $date);
-            if($this->range == 'MTD') $date->subMonth(); // go to previous month if date is set only for MTD
+            if ($this->range == 'MTD') $date->subMonth(); // go to previous month if date is set only for MTD
         }
 
         if($request->range && $request->range != 'null'){

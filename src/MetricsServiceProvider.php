@@ -14,10 +14,6 @@ class MetricsServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        $this->publishes([
-            __DIR__.'/../config/metrics.php' => config_path('metrics.php'),
-        ], 'config');
-
         $this->loadViewsFrom(__DIR__ . '/Views', 'metrics');
 
         $this->publishes([
@@ -30,9 +26,9 @@ class MetricsServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Matthewnw\Metrics\Commands\ValueCommand::class,
-                \Matthewnw\Metrics\Commands\TrendCommand::class,
-                \Matthewnw\Metrics\Commands\PartitionCommand::class,
+                \Matthewnw\Metrics\Commands\ValueMetric::class,
+                \Matthewnw\Metrics\Commands\TrendMetric::class,
+                \Matthewnw\Metrics\Commands\PartitionMetric::class,
             ]);
         }
     }
@@ -44,6 +40,6 @@ class MetricsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/metrics.php', 'metrics');
+        //
     }
 }
