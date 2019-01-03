@@ -7,10 +7,12 @@
         "php": ">=7.0",
         "illuminate/support": "5.*"
     },
-    "author": {
-        "name": "Matthew Williams",
-        "email": "matthew@codelaunch.uk"
-    },
+    "authors": [
+        {
+            "name": "Matthew Williams",
+            "email": "matthew@codelaunch.uk"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Matthewnw\\Metrics\\": "src/"
