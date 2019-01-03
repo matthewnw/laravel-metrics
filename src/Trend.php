@@ -22,7 +22,7 @@ abstract class Trend extends Metric {
      *
      * @var Array
      */
-    protected $values; // ['text', 'value']
+    protected $values; // [['date', 'text', 'value'], ...]
 
     /**
      * whether to add a showValue to the response
@@ -39,6 +39,19 @@ abstract class Trend extends Metric {
     protected function showLatestValue()
     {
         $this->showLatestValue = true;
+        return $this;
+    }
+
+    /**
+     * Manually set the results for the metric
+     *
+     * @param array $values [['date', 'text', 'value'], ...]
+     * @return Metric
+     */
+    protected function result($values)
+    {
+        $this->values = $values;
+
         return $this;
     }
 

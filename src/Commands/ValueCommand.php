@@ -13,7 +13,7 @@ class ValueCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'metric:value';
+    protected $signature = 'metric:value {name : The name of the metric class}';
 
     /**
      * The console command description.

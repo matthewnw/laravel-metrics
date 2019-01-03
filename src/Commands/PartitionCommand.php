@@ -13,7 +13,7 @@ class PartitionCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'metric:partition';
+    protected $signature = 'metric:partition {name : The name of the metric class}';
 
     /**
      * The console command description.

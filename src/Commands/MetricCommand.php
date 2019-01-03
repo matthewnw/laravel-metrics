@@ -6,8 +6,6 @@ use Illuminate\Console\Command;
 
 trait MetricCommand
 {
-
-
     /**
      * Execute the console command.
      *
@@ -31,6 +29,7 @@ trait MetricCommand
     protected function metric($name)
     {
         $class = class_basename($name);
+        $directory = app_path('Metrics/' . substr($name, 0,strrpos($name, '/')));
         $namespace = str_replace('/', '\\', $name);
 
         $metricTemplate = str_replace(
@@ -39,7 +38,12 @@ trait MetricCommand
             $this->getStub()
         );
 
-        file_put_contents(app_path("/Metrics/{$name}.php"), $metricTemplate);
+        if (! is_dir($directory)) {
+            // dir doesn't exist, make it recursively
+            mkdir($directory, null, true);
+        }
+
+        file_put_contents("{$directory}/{$class}.php", $metricTemplate);
     }
 
     /**

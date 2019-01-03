@@ -21,7 +21,7 @@ abstract class Partition extends Metric {
      *
      * @var Array
      */
-    protected $values; // ['text', 'value']
+    protected $values; // ['text' => 'value', ...]
 
     /**
      * Generate a cache key for the relevant metric type and request
@@ -31,6 +31,19 @@ abstract class Partition extends Metric {
     protected function getCacheKey()
     {
         return get_class($this).':'.static::$type;
+    }
+
+    /**
+     * Manually set the results for the metric
+     *
+     * @param array $values ['text' => 'value', ...]
+     * @return Metric
+     */
+    protected function result($values)
+    {
+        $this->values = $values;
+
+        return $this;
     }
 
     /**

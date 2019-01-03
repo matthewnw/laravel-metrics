@@ -39,7 +39,7 @@ abstract class Value extends Metric {
     /**
      * Manually set the result value
      *
-     * @param int $value
+     * @param mixed $value
      * @return Metric
      */
     protected function result($value)
@@ -52,7 +52,7 @@ abstract class Value extends Metric {
     /**
      * Manually set the previous value
      *
-     * @param int $value
+     * @param mixed $value
      * @return Metric
      */
     protected function previous($value)
@@ -62,6 +62,23 @@ abstract class Value extends Metric {
         $this->calculateChange();
 
         return $this;
+    }
+
+    /**
+     * caluclate the percentage change between the values
+     *
+     * @return void
+     */
+    protected function calculateChange()
+    {
+        $difference = (int) $this->value['value'] - (int) $this->previous;
+        $this->change = round(($difference / (int) $this->value['value']) * 100, 2);
+
+        if($this->previous && (int) $this->previous > 0){
+            $this->changeLabel = abs($this->change) . '% ' . ($this->change > 0? 'Increase' : 'Decrease');
+        }else{
+            $this->changeLabel = 'No Prior Data';
+        }
     }
 
     /**
@@ -101,23 +118,6 @@ abstract class Value extends Metric {
         $this->calculateChange();
 
         return $this;
-    }
-
-    /**
-     * caluclate the percentage change between the values
-     *
-     * @return void
-     */
-    protected function calculateChange()
-    {
-        $difference = (int) $this->value['value'] - (int) $this->previous;
-        $this->change = round(($difference / $this->value['value']) * 100, 2);
-
-        if($this->previous && (int) $this->previous > 0){
-            $this->changeLabel = abs($this->change) . '% ' . ($this->change > 0? 'Increase' : 'Decrease');
-        }else{
-            $this->changeLabel = 'No Prior Data';
-        }
     }
 
     /**
