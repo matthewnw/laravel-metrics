@@ -15,18 +15,18 @@ class MetricsServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $this->publishes([
-            __DIR__.'/Config/metrics.php' => config_path('metrics.php'),
-        ], 'metrics_config');
+            __DIR__.'/../config/metrics.php' => config_path('metrics.php'),
+        ], 'config');
 
-        $this->loadViewsFrom(__DIR__ . '/Views', 'laravel-metrics');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'metrics');
 
         $this->publishes([
-            __DIR__ . '/Views' => resource_path('views/vendor/laravel-metrics'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/laravel-metrics'),
         ]);
 
         $this->publishes([
-            __DIR__ . '/Assets' => public_path('vendor/laravel-metrics'),
-        ], 'metrics_assets');
+            __DIR__ . '/../resources/assets' => public_path('vendor/laravel-metrics'),
+        ], 'assets');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -44,8 +44,6 @@ class MetricsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/Config/metrics.php', 'Metrics'
-        );
+        $this->mergeConfigFrom(__DIR__ . '/../config/metrics.php', 'metrics');
     }
 }

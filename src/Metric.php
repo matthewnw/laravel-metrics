@@ -316,6 +316,7 @@ abstract class Metric implements MetricContract, Arrayable, Jsonable, JsonSerial
         return [
             30 => '30 Days',
             60 => '60 Days',
+            365 => '365 Days',
             'MTD' => 'Month to Date',
             'QTD' => 'Quarter to Date',
             'YTD' => 'Year to Date',

@@ -1,30 +1,24 @@
 <?php
 
-namespace App\Metrics\{{metricName}};
+namespace App\Metrics\{{namespace}};
 
-use Matthewnw\Metrics\Trend;
 use Illuminate\Http\Request;
-use App\User;
+use Matthewnw\Metrics\Value;
 
 /**
- * {{metricName}} class
+ * {{className}} class
  */
-class {{metricName}} extends Trend {
+class {{className}} extends Value {
 
     /**
-     * Function called when instantiated to get the calculations
+     * Calculate the value of the metric
      *
      * @param \Illuminate\Http\Request $request
      * @return mixed
      */
     public function calculate(Request $request)
     {
-        return $this->countByDays($request, User::class)
-                    ->showLatestValue()
-                    ->icon('person_add')
-                    ->label(function($label){
-                        return "$label New Users";
-                    });
+        return $this->count($request, Model::class);
     }
 
     /**
@@ -36,24 +30,13 @@ class {{metricName}} extends Trend {
     public function ranges()
     {
         return [
-            7 => '7 Days',
             30 => '30 Days',
             60 => '60 Days',
+            365 => '365 Days',
             'MTD' => 'Month to Date',
             'QTD' => 'Quarter to Date',
             'YTD' => 'Year to Date',
         ];
-    }
-
-    /**
-     * Return the key for the default range if none provided
-     * defaults to the first in the range list
-     *
-     * @return int|string
-     */
-    public function defaultRange()
-    {
-        return 30;
     }
 
     /**

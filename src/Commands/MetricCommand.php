@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 
 trait MetricCommand
 {
+
+
     /**
      * Execute the console command.
      *
@@ -13,7 +15,7 @@ trait MetricCommand
      */
     public function handle()
     {
-        $name = studly_case($this->argument('name'));
+        $name = $this->argument('name');
         // Create a metric class file
         $this->metric($name);
         // Output
@@ -28,9 +30,12 @@ trait MetricCommand
      */
     protected function metric($name)
     {
+        $class = class_basename($name);
+        $namespace = str_replace('/', '\\', $name);
+
         $metricTemplate = str_replace(
-            ['{{metricName}}'],
-            [$name],
+            ['{{namespace}}','{{className}}'],
+            [$namespace, $class],
             $this->getStub()
         );
 
@@ -44,6 +49,6 @@ trait MetricCommand
      */
     protected function getStub()
     {
-        return file_get_contents("./stubs/$this->type.php.stub");
+        return file_get_contents(__DIR__ . "/../../templates/$this->type.stub");
     }
 }

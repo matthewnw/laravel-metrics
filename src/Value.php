@@ -37,6 +37,34 @@ abstract class Value extends Metric {
     protected $changeLabel;
 
     /**
+     * Manually set the result value
+     *
+     * @param int $value
+     * @return Metric
+     */
+    protected function result($value)
+    {
+        $this->setValue($value);
+
+        return $this;
+    }
+
+    /**
+     * Manually set the previous value
+     *
+     * @param int $value
+     * @return Metric
+     */
+    protected function previous($value)
+    {
+        $this->previous = $value;
+
+        $this->calculateChange();
+
+        return $this;
+    }
+
+    /**
      * Counts the values for model at the range and previous range
      *
      * @param Illuminate\Http\Request $request
@@ -82,10 +110,10 @@ abstract class Value extends Metric {
      */
     protected function calculateChange()
     {
-        $difference = $this->value['value'] - $this->previous;
+        $difference = (int) $this->value['value'] - (int) $this->previous;
         $this->change = round(($difference / $this->value['value']) * 100, 2);
 
-        if($this->previous && $this->previous > 0){
+        if($this->previous && (int) $this->previous > 0){
             $this->changeLabel = abs($this->change) . '% ' . ($this->change > 0? 'Increase' : 'Decrease');
         }else{
             $this->changeLabel = 'No Prior Data';
